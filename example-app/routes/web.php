@@ -23,15 +23,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware('role:admin')->group(function () {
-    // Routes accessible to admins only
-    // ...
-});
+
 
 Route::middleware('isAdmin')->group(function () {
     Route::get('/all_customer',[App\Http\Controllers\AdminController::class, 'all_customer'])->name('c.index');
 });
+Route::middleware('islogin')->group(function () {
+    Route::get('/new_dash',[App\Http\Controllers\AdminController::class, 'dash'])->name('c.dash');
+});
 
-Route::get('/new_dash',[App\Http\Controllers\AdminController::class, 'dash']);
+
 Route::post('/cedit',[App\Http\Controllers\AdminController::class, 'cedit']);
 Route::post('/cupdate',[App\Http\Controllers\AdminController::class, 'cupdate'])->name('c.update');

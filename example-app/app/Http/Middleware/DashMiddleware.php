@@ -3,11 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
 use Auth;
-use DB;
+use Illuminate\Http\Request;
 
-class AdminMiddleware
+class DashMiddleware
 {
     /**
      * Handle an incoming request.
@@ -20,22 +19,12 @@ class AdminMiddleware
     {
         if(Auth::guard('customers')->check())
         {
-            $id=Auth::guard('customers')->id();
-            $data=DB::table('customers')->where('id',$id)->first();
-            if($data->role_id==1)
-            {
-                return $next($request);
-            }
-            else
-            {
-                // dd(123);
-                return redirect()->route('c.dash');
-            }
+            return $next($request);
         }
         else
         {
             return redirect('login')->with('message','Plz Login');
         }
-        return $next($request);
+        
     }
 }
