@@ -32,6 +32,11 @@ Route::middleware('islogin')->group(function () {
     Route::get('/new_dash',[App\Http\Controllers\AdminController::class, 'dash'])->name('c.dash');
 });
 
-
+Route::controller(App\Http\Controllers\OtpLoginController::class)->group(function(){
+    Route::get('/otp_login', 'otp_login')->name('otp_login');
+    Route::post('/otp_generate', 'otp_generate')->name('otp_generate');
+    Route::get('/verify_otp/{customer_id}', 'verify_otp')->name('verify_otp');
+    Route::post('/final_otp_login', 'final_otp_login')->name('final_otp_login');
+});
 Route::post('/cedit',[App\Http\Controllers\AdminController::class, 'cedit']);
 Route::post('/cupdate',[App\Http\Controllers\AdminController::class, 'cupdate'])->name('c.update');

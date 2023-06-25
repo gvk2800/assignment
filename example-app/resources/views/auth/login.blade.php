@@ -62,7 +62,9 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                                <a class="btn btn-link" href="{{route('otp_login')}}">Login with OTP</a>
                             </div>
+                            
                         </div>
                     </form>
                 </div>
